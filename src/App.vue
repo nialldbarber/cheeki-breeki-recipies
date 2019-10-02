@@ -1,24 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Products v-bind:products="productList" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// Data
+import products from "./utils/sample.json";
+// Components
+import Products from "./components/Products";
+// Getters
+const getProducts = products[0].products;
+const getDiscount = products[0].discountPercent;
+
+// console.log(products);
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Products
+  },
+  data() {
+    return {
+      productList: getProducts,
+      discount: getDiscount
+    };
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
